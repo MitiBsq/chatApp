@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ChatContainer from './components/ChatContainer';
+import EnterUsername from './components/EnterUsername';
 
+//Main App component//Using state to rerender after inserting the username
 function App() {
+  const [username, setUser] = useState(null);
+
+  function enterUser(dataPassed) {
+    setUser(dataPassed.trim());
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {username ? <ChatContainer username={username} /> : <EnterUsername username={enterUser} />}
     </div>
   );
 }
