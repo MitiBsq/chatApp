@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './App.css';
 import ChatContainer from './components/ChatContainer';
-import EnterUsername from './components/EnterUsername';
+import SignIn from './components/SignIn';
+import { projectAuth } from './firebase/config';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 //Main App component//Using state to rerender after inserting the username
 function App() {
-  const [username, setUser] = useState(null);
-
-  function enterUser(dataPassed) {
-    setUser(dataPassed.trim());
-  }
+  //Using the Google Auth Provider(Sign with google account)
+  const [user] = useAuthState(projectAuth);
 
   return (
     <div>
-      {username ? <ChatContainer username={username} /> : <EnterUsername username={enterUser} />}
+      {user ? <ChatContainer userAuth={projectAuth.currentUser} signOut={() => projectAuth.signOut()} /> : <SignIn />}
     </div>
   );
 }

@@ -13,23 +13,23 @@ li {
   display: flex;
 }
 
-.enterUsername {
-  margin-top: 5em;
+h1 {
+  margin: 0;
+}
+
+.signInWithGoogle {
+  margin-top: 10em;
   display: flex;
   align-content: center;
   flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
-.enterUsername label {
+.signInWithGoogle h1 {
   font-weight: bold;
   font-size: 2em;
-}
-
-.form-control {
-  width: 20%;
 }
 
 .chatContainer {
@@ -41,6 +41,9 @@ li {
 }
 
 .headerChat {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #041E42;
   height: 8.5vh;
   min-height: 50px;
@@ -49,9 +52,12 @@ li {
   max-width: 728px;
 }
 
-.headerChat h6 {
-  text-align: end;
-  margin-right: 2em;
+.headerChat div {
+  margin-right: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .msgPlace {

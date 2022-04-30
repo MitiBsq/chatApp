@@ -8,6 +8,7 @@ export default function TypePlace(props) {
     //Eliminating the form default submit event
     e.preventDefault();
     //This 'if' wont let you send an empty message
+    const { uid, displayName } = props.userAuth;
     if (message.trim() !== '') {
       //Creating the collection(messages) on firebase database
       const collectionRef = projectFirestore.collection('messages');
@@ -15,7 +16,8 @@ export default function TypePlace(props) {
       await collectionRef.add({
         createdAt: timestamp(),
         message: message,
-        uid: props.username.toUpperCase()
+        uid: uid,
+        displayName: displayName,
       }, setMessage(''));
     }
   }
@@ -33,5 +35,5 @@ export default function TypePlace(props) {
         <button onClick={sendMessage} className='btn btn-secondary'>Send</button>
       </form>
     </div>
-  )
+  );
 }

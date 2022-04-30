@@ -13,17 +13,18 @@ export default function MsgPlace(props) {
   }, [docs]);
 
   //Verifying if the messages are sent by the same user(will display the username just for the first one )
-  let uid = '';
+  const { uid } = props.userAuth;
+  let checkUid = '';
   let count;
   const msg = docs.map(doc => {
-    if (uid !== doc.uid) {
-      uid = doc.uid;
+    if (checkUid !== doc.uid) {
+      checkUid = doc.uid;
       count = 0;
     } else {
       ++count;
     }
     //If the user enters the chat with the same id as other messages he is actualized to "Me"
-    return <Message key={doc.id} msg={doc.message} time={doc.createdAt} uid={uid === props.username.toUpperCase() ? "Me" : count > 0 ? "" : uid} />
+    return <Message key={doc.id} msg={doc.message} time={doc.createdAt} uid={doc.uid === uid ? "Me" : count > 0 ? "" : doc.displayName} photoURL={props.userAuth.photoURL} />
   });
 
   return (
@@ -33,5 +34,5 @@ export default function MsgPlace(props) {
       </ul>
       <div ref={toScroll} ></div>
     </div>
-  )
+  );
 }
